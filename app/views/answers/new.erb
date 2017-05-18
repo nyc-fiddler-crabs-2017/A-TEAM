@@ -1,0 +1,9 @@
+<form action="/questions/<%= @question.id %>/answers" method="post">
+  <label>ANSWER:
+  <input type="text" name="answer[text]">
+  </label>
+  <input type="hidden" name="answer[question_id]" value="<%= @question.id %>">
+  <input type="submit" value="Add Answer">
+</form>
+
+
