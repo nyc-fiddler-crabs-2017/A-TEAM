@@ -24,6 +24,9 @@
    <label>Welcome</label>
    <%= @current_user.username %>
    <div>
+     <a href='/questions/new'>Add Question</a>
+   </div>
+   <div>
    <a href="/users/<%= @current_user.id %>">Profile Page</a>
   </div>
    <form action="/logout" method="post">
