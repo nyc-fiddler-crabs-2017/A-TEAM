@@ -1,0 +1,13 @@
+<h1>Edit your Question</h1>
+<form method='post' action= '/questions'>
+  <input type="hidden" name="_method" value="put"
+  Title:<br>
+  <tr>
+    <input type="text" name="question[title]" placeholder='Title'>
+  </tr><br>
+  Description:<br>
+  <tr>
+    <input type="text" name="question[text]" placeholder='Text'>
+  </tr><br>
+    <input type="submit" value="Submit">
+</form>
