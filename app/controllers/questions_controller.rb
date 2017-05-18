@@ -1,5 +1,5 @@
 get '/questions' do
-  @question = Question.all
+  @questions = Question.all
 
   erb :'questions/index'
 end
@@ -9,8 +9,8 @@ get '/questions/new' do
 end
 
 post '/questions' do
-  @question = Question.new(params[:question])
-
+  @question = current_user.questions.new(params[:question])
+  # binding.pry
   if @question.save
     redirect '/questions'
   else
