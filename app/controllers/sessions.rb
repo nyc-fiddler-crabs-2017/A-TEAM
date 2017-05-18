@@ -5,10 +5,9 @@ get '/login' do
 end
 
 post '/login' do
-  @user = User.authenticate(params[:email], params[:password])
-  if @user
+  @user = User.find_by(email: params[:email])
+  if @user.authenticate(params[:password])
     session[:user_id] = @user.id
-    @channels = @user.channels
     erb :'/users/show'
   else
     @errors = "Invalid email or password"
