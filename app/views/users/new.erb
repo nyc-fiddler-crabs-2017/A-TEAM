@@ -1,0 +1,16 @@
+<%= erb :'_errors' %>
+
+<h1> Make a new User </h1>
+
+<form method='post' action= '/users'>
+  <tr>
+    <input type="text" name="user[username]" placeholder='Name'>
+  </tr>
+  <tr>
+    <input type="email" name="user[email]" placeholder='Email'>
+  </tr>
+  <tr>
+    <input type="password" name="user[password]" placeholder='Password'>
+  </tr>
+    <input type="submit" value="Submit">
+</form>
