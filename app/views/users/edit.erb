@@ -1,0 +1,20 @@
+<%= erb :'_errors' %>
+
+<h1>Edit User Info</h1>
+
+<form action="/users/<%= @user.id %>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <tr>
+    <label>Username:</label>
+    <input type="text" name="user[username]">
+  </tr>
+  <tr>
+    <label>Email:</label>
+    <input type="text" name="user[email]">
+  </tr>
+  <tr>
+    <label>Password:</label>
+    <input type="text" name="user[password]">
+  </tr>
+  <input type="submit" value="Update">
+</form>
