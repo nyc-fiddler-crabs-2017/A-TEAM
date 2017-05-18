@@ -11,3 +11,8 @@
   </tr><br>
     <input type="submit" value="Submit">
 </form>
+
+<form method="post" action="/questions/<%= @question.id %>">
+     <input name="_method" type="hidden" value="delete">
+     <input type="submit" value="Delete Entry" class="button">
+ </form>
