@@ -1,7 +1,3 @@
-getm '/users' do
-  erb :'/users/index'
-end
-
 get '/users/new' do
   erb :'/users/new'
 end
@@ -31,9 +27,4 @@ put '/users/:id' do
   user = User.find_by(id: params[:id])
   user.update_attribute(params[:user])
   redirect '/'
-end
-
-delete '/users/:id' do
-  user = User.find_by(id: params[:id])
-
 end
