@@ -12,6 +12,7 @@ post '/users/:user_id/votes' do
   if @vote.save
     redirect "/questions"
   else
+    @errors = @vote.errors.full_messages
     erb :'votes/new'
   end
 end
