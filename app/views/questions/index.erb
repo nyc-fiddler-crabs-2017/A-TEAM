@@ -2,6 +2,8 @@
 
 <ul>
   <% @questions.each do |question| %>
+
+ <div class="collection">
     <h2><form action="users/<%= current_user.id %>/votes" method='post'>
         <input type='hidden' name="vote[voteable_id]" value="<% question.id %>">
         <input type='hidden' name="vote[voteable_type]" value="question">
@@ -16,5 +18,8 @@
         <input type="submit" value='downvote'>
       </form>
         <%= question.votes.count %><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
-  <% end %>
+   
+    </div>
+
+
 </ul>

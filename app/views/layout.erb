@@ -7,29 +7,29 @@
     See: http://necolas.github.com/normalize.css/
   -->
   <link rel="stylesheet" href="/css/normalize.css">
-  <!--
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+ <!-- Compiled and minified JavaScript -->  <!--
     application.css is where you put your styles
   -->
   <link rel="stylesheet" href="/css/application.css">
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/js/application.js"></script>
-
   <title></title>
 </head>
 <body>
+<div class="layout-page">
   <a href="/">Home</a>
    <br>
  <% if is_logged_in? %>
    <label>Welcome</label>
-   <%= @current_user.username %>
+   <p><%= @current_user.username.upcase %></p>
    <div>
      <a href='/questions/new'>Add Question</a>
    </div>
    <div>
    <a href="/users/<%= @current_user.id %>">Profile Page</a>
   </div>
-   <form action="/logout" method="post">
+   <form id="logout" action="/logout" method="post">
      <input type="hidden" name="_method" value="delete">
      <input type="submit" value="Logout">
    </form>
@@ -39,6 +39,16 @@
  </div>
    <a href="/users/new">New User</a>
  <% end %>
+ </div>
+ <div class="container">
+   <div class="title">
+    <h2>Power Overwhelming</h2>
+   </div>
   <%= yield %>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  <script src="/js/application.js"></script>
+
 </body>
 </html>
