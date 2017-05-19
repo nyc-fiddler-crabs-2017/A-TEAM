@@ -2,6 +2,9 @@
 
 <ul>
   <% @questions.each do |question| %>
-    <h2><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
+    <h2><form action="users/<%=question.user_id %>/votes" method='post'>
+        <input type='hidden' name="vote[voteable_id]" value="<% question.id %>">
+        <input type='hidden' name="vote[voteable_type]" value="question">
+        <input type="submit" value='upvote'><%= question.votes.count %><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
   <% end %>
 </ul>
