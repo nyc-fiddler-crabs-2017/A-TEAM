@@ -14,6 +14,7 @@ post '/comments' do
   if @comment.save
     redirect '/comments'
   else
+    @errors = @comment.errors.full_messages
     erb :'comments/new'
   end
 end
