@@ -2,13 +2,13 @@
 
 <ul>
   <% @questions.each do |question| %>
-    <h2><form action="users/votes" method='post'>
+    <h2><form action="users/<%= current_user.id %>/votes" method='post'>
         <input type='hidden' name="vote[voteable_id]" value="<% question.id %>">
         <input type='hidden' name="vote[voteable_type]" value="question">
         <input type="submit" value='upvote'>
       </form>
 
-<form action="users/votes" method='post'>
+<form action="users/<%= current_user.id %>/votes" method='post'>
         <input type='hidden' name="_method" value="delete">
         <input type='hidden' name="vote[voteable_id]" value="<%= question.id %>">
         <input type='hidden' name="vote[user_id]" value="<%= question.user_id %>">

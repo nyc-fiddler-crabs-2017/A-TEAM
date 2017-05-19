@@ -9,12 +9,12 @@
 <% end %>
 <p><% @question.answers.each do |answer| %>
   <div>
-<form action="users/votes" method='post'>
+<form action="/users/<%= current_user.id %>/votes" method='post'>
     <input type='hidden' name="vote[voteable_id]" value="<%= answer.id %>">
     <input type='hidden' name="vote[voteable_type]" value="answer">
     <input type="submit" value='upvote'>
       </form>
-<form action="users/votes" method='post'>
+<form action="/users/<%= current_user.id %>/votes" method='post'>
         <input type='hidden' name="_method" value="delete">
         <input type='hidden' name="vote[voteable_id]" value="<%= answer.id %>">
         <input type='hidden' name="vote[user_id]" value="<%= answer.user_id %>">
