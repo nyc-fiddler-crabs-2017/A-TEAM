@@ -7,7 +7,7 @@
     <h2><form action="users/<%= current_user.id %>/votes" method='post'>
         <input type='hidden' name="vote[voteable_id]" value="<% question.id %>">
         <input type='hidden' name="vote[voteable_type]" value="question">
-        <input type="submit" value='upvote'>
+        <input id="upvote" type="submit" value='upvote'>
       </form>
 
 <form action="users/<%= current_user.id %>/votes" method='post'>
@@ -15,11 +15,11 @@
         <input type='hidden' name="vote[voteable_id]" value="<%= question.id %>">
         <input type='hidden' name="vote[user_id]" value="<%= question.user_id %>">
         <input type='hidden' name="vote[voteable_type]" value="question">
-        <input type="submit" value='downvote'>
+        <input id="downvote" type="submit" value='downvote'>
       </form>
-        <%= question.votes.count %><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
-   
-    </div>
+        <p><%= question.votes.count %></p><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
 
+    </div>
+<% end %>
 
 </ul>

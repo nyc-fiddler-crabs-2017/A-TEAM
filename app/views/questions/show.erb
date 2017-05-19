@@ -7,36 +7,36 @@
   <input type="submit" value="Delete Question">
 </form>
 <% end %>
-<p><% @question.answers.each do |answer| %>
-
-  <div>
-      <div class="answers">
-    
-<form action="/users/<%= current_user.id %>/votes" method='post'>
+<% @question.answers.each do |answer| %>
+  <form class="question_form" action="/users/<%= current_user.id %>/votes" method='post'>
     <input type='hidden' name="vote[voteable_id]" value="<%= answer.id %>">
     <input type='hidden' name="vote[voteable_type]" value="answer">
-    <input type="submit" value='upvote'>
-      </form>
-<form action="/users/<%= current_user.id %>/votes" method='post'>
+    <input id="upvote" type="submit">
+  </form>
+<table>
+  <tbody>
+  <td>
+    <h3 class="white-text"><%= answer.votes.count %></h3>
+  </td>
+    <td class="white-text">
+      <%= answer.text %>
+   </td>
+  </tbody>
+</table>
+  <form class="question_form" action="/users/<%= current_user.id %>/votes" method='post'>
         <input type='hidden' name="_method" value="delete">
         <input type='hidden' name="vote[voteable_id]" value="<%= answer.id %>">
         <input type='hidden' name="vote[user_id]" value="<%= answer.user_id %>">
         <input type='hidden' name="vote[voteable_type]" value="answer">
-        <input type="submit" value='downvote'>
-      </form>
-            <div class="answer-text">
-    <%= answer.votes.count %>
-    <%= answer.text %>
-                  </div>
+      <input id="downvote" type="submit">
+  </form>
     <% if current_user.id == answer.user_id %>
-      <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit Answer</a>
-      <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
+      <a class="question_form" href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit Answer</a>
+      <form class="question_form" action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
         <input type='hidden' name="_method" value="delete">
         <input type="submit" value="Delete Answer">
       </form>
-    </div>
     <% end %>
-  </div>
 <% end %>
 
 <div class="submit-answer">
@@ -45,6 +45,6 @@
     <textarea class="answer-form" cols="50" rows="10" name="answer[text]"></textarea>
     </label>
     <input type="hidden" name="answer[question_id]" value="<%= @question.id %>">
-    <input type="submit" value="Add Answer">
+    <input class="black" type="submit" value="Add Answer">
   </form>
 </div>
