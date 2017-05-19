@@ -29,7 +29,7 @@
    <div>
    <a href="/users/<%= @current_user.id %>">Profile Page</a>
   </div>
-   <form action="/logout" method="post">
+   <form id="logout" action="/logout" method="post">
      <input type="hidden" name="_method" value="delete">
      <input type="submit" value="Logout">
    </form>

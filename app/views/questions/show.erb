@@ -9,7 +9,7 @@
 <% end %>
 <p><% @question.answers.each do |answer| %>
   <div class="answers">
-    <div id="answer-text">
+    <div class="answer-text">
       <%= answer.text %>
       <% if current_user.id == answer.user_id %>
     </div>
@@ -27,7 +27,7 @@
 <div class="submit-answer">
   <form action="/questions/<%= @question.id %>/answers" method="post">
     <label>Give an Answer:
-    <textarea id="answer-form" cols="50" rows="10" name="answer[text]"></textarea>
+    <textarea class="answer-form" cols="50" rows="10" name="answer[text]"></textarea>
     </label>
     <input type="hidden" name="answer[question_id]" value="<%= @question.id %>">
     <input type="submit" value="Add Answer">

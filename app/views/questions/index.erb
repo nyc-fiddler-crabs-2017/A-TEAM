@@ -2,6 +2,8 @@
 
 <ul>
   <% @questions.each do |question| %>
-    <h2><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
+    <div class="collection">
+      <h2><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
+    </div>
   <% end %>
 </ul>
