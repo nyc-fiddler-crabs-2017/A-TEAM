@@ -4,10 +4,16 @@
   AComment:<br>
     <input type='hidden' name="comment[user_id]" value="<%= current_user.id %>">
     <input type='hidden' name="comment[commentable_id]" value="<%= @question.id %>">
-    <input type='hidden' name="vote[commentable_type]" value="Question">
+    <input type='hidden' name="comment[commentable_type]" value="Question">
   <input type="comment[body]" name="comment[body]" ><br>
   <input type="submit" value="Submit Comment">
 </form>
+
+<% @question.comments.each do |comment| %>
+<div>
+<%= comment.body %>
+<div>
+<% end %>
 
 <% if current_user.id == @question.user_id %>
 <a href="/questions/<%= @question.id %>/edit">Edit question</a>
@@ -18,6 +24,10 @@
 <% end %>
 
 <p><% @question.answers.each do |answer| %>
+  <div class="answer-text">
+    <%= answer.show_score %>
+    <%= answer.text %>
+  </div>
 
   <div>
       <div class="answers">
@@ -36,18 +46,22 @@
         <input type='hidden' name="vote[voteable_type]" value="Answer">
         <input type="submit" value='downvote'>
       </form>
-            <div class="answer-text">
-    <%= answer.show_score %>
-    <%= answer.text %>
-                  </div>
+
+
 <form action="/comments" method="post">
   AComment:<br>
     <input type='hidden' name="comment[user_id]" value="<%= current_user.id %>">
-    <input type='hidden' name="comment[commentable_id]" value="<%= answer.id %>">
-    <input type='hidden' name="vote[commentable_type]" value="Question">
+    <input type='hidden' name="comment[commentable_id]" value="<%= @question.id %>">
+    <input type='hidden' name="comment[commentable_type]" value="Answer">
   <input type="comment[body]" name="comment[body]" ><br>
   <input type="submit" value="Submit Comment">
 </form>
+
+<% @question.comments.each do |comment| %>
+<div>
+<%= comment.body %>
+<div>
+<% end %>
 
 
     <% if current_user.id == answer.user_id %>
