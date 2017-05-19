@@ -1,29 +1,35 @@
 <h1><%= @question.title %></h1>
 <p><%= @question.text %></p>
 <% if current_user.id == @question.user_id %>
-<a href="/questions/<%= @question.id %>/edit">EDIT</a>
+<a href="/questions/<%= @question.id %>/edit">Edit question</a>
 <form action="/questions/<%= @question.id %>" method="post">
   <input type='hidden' name="_method" value="delete">
-  <input type="submit" value="Delete">
+  <input type="submit" value="Delete Question">
 </form>
 <% end %>
 <p><% @question.answers.each do |answer| %>
-  <div>
-    <%= answer.text %>
-    <% if current_user.id == answer.user_id %>
-    <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">EDIT</a>
-    <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
-      <input type='hidden' name="_method" value="delete">
-      <input type="submit" value="Delete">
-    </form>
+  <div class="answers">
+    <div id="answer-text">
+      <%= answer.text %>
+      <% if current_user.id == answer.user_id %>
+    </div>
+    <div class="">
+      <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit Answer</a>
+      <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
+        <input type='hidden' name="_method" value="delete">
+        <input type="submit" value="Delete Answer">
+      </form>
+    </div>
     <% end %>
   </div>
 <% end %>
 
+<div class="submit-answer">
   <form action="/questions/<%= @question.id %>/answers" method="post">
-    <label>ANSWER:
-    <input type="text" name="answer[text]">
+    <label>Give an Answer:
+    <textarea id="answer-form" cols="50" rows="10" name="answer[text]"></textarea>
     </label>
     <input type="hidden" name="answer[question_id]" value="<%= @question.id %>">
     <input type="submit" value="Add Answer">
   </form>
+</div>
