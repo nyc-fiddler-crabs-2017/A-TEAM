@@ -8,12 +8,27 @@
 </form>
 <% end %>
 <p><% @question.answers.each do |answer| %>
-  <div class="answers">
-    <div class="answer-text">
-      <%= answer.text %>
-      <% if current_user.id == answer.user_id %>
-    </div>
-    <div class="">
+
+  <div>
+      <div class="answers">
+    
+<form action="/users/<%= current_user.id %>/votes" method='post'>
+    <input type='hidden' name="vote[voteable_id]" value="<%= answer.id %>">
+    <input type='hidden' name="vote[voteable_type]" value="answer">
+    <input type="submit" value='upvote'>
+      </form>
+<form action="/users/<%= current_user.id %>/votes" method='post'>
+        <input type='hidden' name="_method" value="delete">
+        <input type='hidden' name="vote[voteable_id]" value="<%= answer.id %>">
+        <input type='hidden' name="vote[user_id]" value="<%= answer.user_id %>">
+        <input type='hidden' name="vote[voteable_type]" value="answer">
+        <input type="submit" value='downvote'>
+      </form>
+            <div class="answer-text">
+    <%= answer.votes.count %>
+    <%= answer.text %>
+                  </div>
+    <% if current_user.id == answer.user_id %>
       <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit Answer</a>
       <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
         <input type='hidden' name="_method" value="delete">
