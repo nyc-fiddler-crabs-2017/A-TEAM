@@ -6,12 +6,15 @@
         <input type='hidden' name="vote[voteable_id]" value="<% question.id %>">
         <input type='hidden' name="vote[voteable_type]" value="question">
         <input type="submit" value='upvote'>
+      </form>
+
 <form action="users/votes" method='post'>
         <input type='hidden' name="_method" value="delete">
         <input type='hidden' name="vote[voteable_id]" value="<%= question.id %>">
         <input type='hidden' name="vote[user_id]" value="<%= question.user_id %>">
         <input type='hidden' name="vote[voteable_type]" value="question">
         <input type="submit" value='downvote'>
+      </form>
         <%= question.votes.count %><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
   <% end %>
 </ul>

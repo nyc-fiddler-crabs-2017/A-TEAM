@@ -13,12 +13,14 @@
     <input type='hidden' name="vote[voteable_id]" value="<%= answer.id %>">
     <input type='hidden' name="vote[voteable_type]" value="answer">
     <input type="submit" value='upvote'>
+      </form>
 <form action="users/votes" method='post'>
         <input type='hidden' name="_method" value="delete">
         <input type='hidden' name="vote[voteable_id]" value="<%= answer.id %>">
         <input type='hidden' name="vote[user_id]" value="<%= answer.user_id %>">
         <input type='hidden' name="vote[voteable_type]" value="answer">
         <input type="submit" value='downvote'>
+      </form>
     <%= answer.votes.count %>
     <%= answer.text %>
     <% if current_user.id == answer.user_id %>
