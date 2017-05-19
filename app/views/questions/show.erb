@@ -1,2 +1,29 @@
 <h1><%= @question.title %></h1>
 <p><%= @question.text %></p>
+<% if current_user.id == @question.user_id %>
+<a href="/questions/<%= @question.id %>/edit">EDIT</a>
+<form action="/questions/<%= @question.id %>" method="post">
+  <input type='hidden' name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form>
+<% end %>
+<p><% @question.answers.each do |answer| %>
+  <div>
+    <%= answer.text %>
+    <% if current_user.id == answer.user_id %>
+    <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">EDIT</a>
+    <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
+      <input type='hidden' name="_method" value="delete">
+      <input type="submit" value="Delete">
+    </form>
+    <% end %>
+  </div>
+<% end %>
+
+  <form action="/questions/<%= @question.id %>/answers" method="post">
+    <label>ANSWER:
+    <input type="text" name="answer[text]">
+    </label>
+    <input type="hidden" name="answer[question_id]" value="<%= @question.id %>">
+    <input type="submit" value="Add Answer">
+  </form>

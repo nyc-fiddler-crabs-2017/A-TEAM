@@ -2,7 +2,6 @@
 
 <ul>
   <% @questions.each do |question| %>
-    <h2><%= question.title %></h2>
-    <p><%= question.text %></p> 
+    <h2><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
   <% end %>
 </ul>

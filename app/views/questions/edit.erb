@@ -1,13 +1,13 @@
 <h1>Edit your Question</h1>
 <form method='post' action= '/questions'>
-  <input type="hidden" name="_method" value="put"
+  <input type="hidden" name="_method" value="put">
   Title:<br>
   <tr>
-    <input type="text" name="question[title]" placeholder='Title'>
+    <input type="text" name="question[title]" value="<%= @question.title %>">
   </tr><br>
   Description:<br>
   <tr>
-    <input type="text" name="question[text]" placeholder='Text'>
+    <input type="text" name="question[text]" value="<%= @question.text %>">
   </tr><br>
     <input type="submit" value="Submit">
 </form>
