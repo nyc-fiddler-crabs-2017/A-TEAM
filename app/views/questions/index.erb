@@ -9,7 +9,7 @@
         <input type='hidden' name="vote[voteable_id]" value="<%= question.id %>">
         <input type='hidden' name="vote[value]" value="1">
         <input type='hidden' name="vote[voteable_type]" value="Question">
-        <input type="@submit" value='upvote'>
+        <input type="submit" value='upvote' id="upvote">
       </form>
 
 <form action="users/<%= current_user.id %>/votes" method='post'>
@@ -23,5 +23,6 @@
 
     </div>
     <% end %>
+
 
 </ul>

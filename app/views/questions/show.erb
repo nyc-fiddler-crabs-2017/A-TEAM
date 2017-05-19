@@ -16,6 +16,7 @@
   <input type="submit" value="Delete Question">
 </form>
 <% end %>
+
 <p><% @question.answers.each do |answer| %>
 
   <div>
@@ -48,15 +49,14 @@
   <input type="submit" value="Submit Comment">
 </form>
 
+
     <% if current_user.id == answer.user_id %>
-      <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit Answer</a>
-      <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
+      <a class="question_form" href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit Answer</a>
+      <form class="question_form" action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
         <input type='hidden' name="_method" value="delete">
         <input type="submit" value="Delete Answer">
       </form>
-    </div>
     <% end %>
-  </div>
 <% end %>
 
 <div class="submit-answer">
@@ -65,6 +65,6 @@
     <textarea class="answer-form" cols="50" rows="10" name="answer[text]"></textarea>
     </label>
     <input type="hidden" name="answer[question_id]" value="<%= @question.id %>">
-    <input type="submit" value="Add Answer">
+    <input class="black" type="submit" value="Add Answer">
   </form>
 </div>
