@@ -20,7 +20,7 @@ post '/comments' do
 end
 
 get '/comments/:id/edit' do
-  @comment = Comment.find(params[:id])
+  @comment = Comment.find_by(id: params[:id])
 
   erb :'comments/edit'
 end
