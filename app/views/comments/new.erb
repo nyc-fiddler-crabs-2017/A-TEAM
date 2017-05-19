@@ -1,0 +1,11 @@
+<% if @errors %>
+  <% @error.each do |error| %>
+    <%= error %>
+  <% end %>
+<% end %>
+
+<form action="/comments" method="post">
+  Comment:<br>
+  <input type="text" name="comment" ><br>
+  <input type="submit" value="Submit">
+</form>
