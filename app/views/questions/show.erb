@@ -1,5 +1,14 @@
 <h1><%= @question.title %></h1>
 <p><%= @question.text %></p>
+<form action="/comments" method="post">
+  AComment:<br>
+    <input type='hidden' name="comment[user_id]" value="<%= current_user.id %>">
+    <input type='hidden' name="comment[commentable_id]" value="<%= @question.id %>">
+    <input type='hidden' name="vote[commentable_type]" value="Question">
+  <input type="comment[body]" name="comment[body]" ><br>
+  <input type="submit" value="Submit Comment">
+</form>
+
 <% if current_user.id == @question.user_id %>
 <a href="/questions/<%= @question.id %>/edit">Edit question</a>
 <form action="/questions/<%= @question.id %>" method="post">
@@ -11,23 +20,34 @@
 
   <div>
       <div class="answers">
-    
+
 <form action="/users/<%= current_user.id %>/votes" method='post'>
+    <input type='hidden' name="vote[user_id]" value="<%= current_user.id %>">
     <input type='hidden' name="vote[voteable_id]" value="<%= answer.id %>">
-    <input type='hidden' name="vote[voteable_type]" value="answer">
+    <input type='hidden' name="vote[voteable_type]" value="Answer">
+    <input type='hidden' name="vote[value]" value="1">
     <input type="submit" value='upvote'>
       </form>
 <form action="/users/<%= current_user.id %>/votes" method='post'>
-        <input type='hidden' name="_method" value="delete">
         <input type='hidden' name="vote[voteable_id]" value="<%= answer.id %>">
-        <input type='hidden' name="vote[user_id]" value="<%= answer.user_id %>">
-        <input type='hidden' name="vote[voteable_type]" value="answer">
+        <input type='hidden' name="vote[user_id]" value="<%= current_user.id %>">
+        <input type='hidden' name="vote[value]" value="-1">
+        <input type='hidden' name="vote[voteable_type]" value="Answer">
         <input type="submit" value='downvote'>
       </form>
             <div class="answer-text">
-    <%= answer.votes.count %>
+    <%= answer.show_score %>
     <%= answer.text %>
                   </div>
+<form action="/comments" method="post">
+  AComment:<br>
+    <input type='hidden' name="comment[user_id]" value="<%= current_user.id %>">
+    <input type='hidden' name="comment[commentable_id]" value="<%= answer.id %>">
+    <input type='hidden' name="vote[commentable_type]" value="Question">
+  <input type="comment[body]" name="comment[body]" ><br>
+  <input type="submit" value="Submit Comment">
+</form>
+
     <% if current_user.id == answer.user_id %>
       <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit Answer</a>
       <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">

@@ -5,21 +5,23 @@
 
  <div class="collection">
     <h2><form action="users/<%= current_user.id %>/votes" method='post'>
-        <input type='hidden' name="vote[voteable_id]" value="<% question.id %>">
-        <input type='hidden' name="vote[voteable_type]" value="question">
-        <input type="submit" value='upvote'>
+        <input type='hidden' name="vote[user_id]" value="<%= current_user.id %>">
+        <input type='hidden' name="vote[voteable_id]" value="<%= question.id %>">
+        <input type='hidden' name="vote[value]" value="1">
+        <input type='hidden' name="vote[voteable_type]" value="Question">
+        <input type="@submit" value='upvote'>
       </form>
 
 <form action="users/<%= current_user.id %>/votes" method='post'>
-        <input type='hidden' name="_method" value="delete">
+        <input type='hidden' name="vote[user_id]" value="<%= current_user.id %>">
         <input type='hidden' name="vote[voteable_id]" value="<%= question.id %>">
-        <input type='hidden' name="vote[user_id]" value="<%= question.user_id %>">
-        <input type='hidden' name="vote[voteable_type]" value="question">
+        <input type='hidden' name="vote[value]" value="-1">
+        <input type='hidden' name="vote[voteable_type]" value="Question">
         <input type="submit" value='downvote'>
       </form>
-        <%= question.votes.count %><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
-   
-    </div>
+        <%= question.show_score %><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
 
+    </div>
+    <% end %>
 
 </ul>
