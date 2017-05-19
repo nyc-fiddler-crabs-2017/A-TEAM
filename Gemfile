@@ -9,7 +9,7 @@ gem 'sinatra', '~> 1.0'
 gem 'sinatra-contrib'
 
 # Use Thin for our web server
-gem 'thin'
+gem 'thin', :git => 'https://github.com/macournoyer/thin'
 
 gem 'activesupport', '~> 4.2.2'
 gem 'activerecord', '~> 4.2.2'
