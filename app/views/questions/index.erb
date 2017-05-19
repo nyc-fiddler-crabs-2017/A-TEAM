@@ -9,7 +9,7 @@
         <input type='hidden' name="vote[voteable_id]" value="<%= question.id %>">
         <input type='hidden' name="vote[value]" value="1">
         <input type='hidden' name="vote[voteable_type]" value="Question">
-        <input type="submit" value='upvote' id="upvote">
+        <button type="submit"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
       </form>
 
 <form action="users/<%= current_user.id %>/votes" method='post'>
@@ -17,9 +17,10 @@
         <input type='hidden' name="vote[voteable_id]" value="<%= question.id %>">
         <input type='hidden' name="vote[value]" value="-1">
         <input type='hidden' name="vote[voteable_type]" value="Question">
-        <input type="submit" value='downvote'>
+        <button type="submit"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
       </form>
-        <%= question.show_score %><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
+      <h3 class="white-text"><%= question.show_score %></h3>
+      <h2><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>
 
     </div>
     <% end %>
