@@ -1,6 +1,6 @@
 <h2 class="white-text"><%= @question.title %></h2>
-<p><%= @question.text %></p>
 <% if is_logged_in? %>
+<p><%= @question.text %></p>
 <form action="/comments" method="post">
   <label class="white">Comment on Question:</label>
     <input type='hidden' name="comment[user_id]" value="<%= current_user.id %>">
@@ -46,7 +46,7 @@
       <input type='hidden' name="comment[commentable_id]" value="<%= answer.id %>">
       <input type='hidden' name="vote[commentable_type]" value="Question">
       <input type="comment[body]" name="comment[body]" ><br>
-      <input type="submit" value="Submit Comment on Answer">
+      <input class ="black" type="submit" value="Submit Comment on Answer">
       </form>
     </div>
 
