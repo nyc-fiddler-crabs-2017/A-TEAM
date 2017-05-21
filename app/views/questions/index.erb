@@ -5,7 +5,8 @@
 <ul>
   <% @questions.each do |question| %>
   <li class="question-list">
-   <div class="votes">
+     <% if is_logged_in?%>
+     <div class="votes">
       <form action="users/<%= current_user.id %>/votes" method='post'>
           <input type='hidden' name="vote[user_id]" value="<%= current_user.id %>">
           <input type='hidden' name="vote[voteable_id]" value="<%= question.id %>">
@@ -22,6 +23,7 @@
           <button type="submit"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
         </form>
     </div>
+      <% end %>
     <tr>
       <div class="question-show">
         <h6><a href="/questions/<%= question.id %>" > <%= question.title %></a></h2>

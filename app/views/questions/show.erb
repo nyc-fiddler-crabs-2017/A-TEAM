@@ -1,5 +1,6 @@
 <h2 class="white-text"><%= @question.title %></h2>
 <p><%= @question.text %></p>
+<% if is_logged_in? %>
 <form action="/comments" method="post">
   <label class="white">Comment on Question:</label>
     <input type='hidden' name="comment[user_id]" value="<%= current_user.id %>">
@@ -16,7 +17,6 @@
   <input type="submit" value="Delete Question">
 </form>
 <% end %>
-
 <p><% @question.answers.each do |answer| %>
 <div class="votes">
   <form action="/users/<%= current_user.id %>/votes" method='post'>
@@ -36,34 +36,42 @@
     </form>
   </div>
     <div class="question-show">
+      <label>Answer:</label>
     <%= answer.text %>
     </div>
     <div class="comments">
-  Add a Comment for this Answer:
-  <form action="/comments" method="post">
-    <input type='hidden' name="comment[user_id]" value="<%= current_user.id %>">
-    <input type='hidden' name="comment[commentable_id]" value="<%= answer.id %>">
-    <input type='hidden' name="vote[commentable_type]" value="Question">
-    <input type="comment[body]" name="comment[body]" ><br>
-    <input type="submit" value="Submit Comment on Answer">
-    </form>
-  </div>
-  
+    Add a Comment for this Answer:
+    <form action="/comments" method="post">
+      <input type='hidden' name="comment[user_id]" value="<%= current_user.id %>">
+      <input type='hidden' name="comment[commentable_id]" value="<%= answer.id %>">
+      <input type='hidden' name="vote[commentable_type]" value="Question">
+      <input type="comment[body]" name="comment[body]" ><br>
+      <input type="submit" value="Submit Comment on Answer">
+      </form>
+    </div>
+
     <% if current_user.id == answer.user_id %>
       <a class="question_form" href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit Answer</a>
       <form class="question_form" action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
         <input type='hidden' name="_method" value="delete">
         <input type="submit" value="Delete Answer">
       </form>
-    <% end %>
+      <% end %>
+  <% end %>
+  <div class="submit-answer">
+    <form action="/questions/<%= @question.id %>/answers" method="post">
+      <label>Give an Answer:
+        <textarea class="answer-form" cols="50" rows="10" name="answer[text]"></textarea>
+      </label>
+      <input type="hidden" name="answer[question_id]" value="<%= @question.id %>">
+      <input class="black" type="submit" value="Add Answer">
+    </form>
+  </div>
+  <% else %>
+    <p><% @question.answers.each do |answer| %>
+      <div class="no_user">
+        <label>Answer:</label>
+        <%= answer.text %>
+      </div>
+      <% end %>
 <% end %>
-
-<div class="submit-answer">
-  <form action="/questions/<%= @question.id %>/answers" method="post">
-    <label>Give an Answer:
-    <textarea class="answer-form" cols="50" rows="10" name="answer[text]"></textarea>
-    </label>
-    <input type="hidden" name="answer[question_id]" value="<%= @question.id %>">
-    <input class="black" type="submit" value="Add Answer">
-  </form>
-</div>

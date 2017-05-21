@@ -9,6 +9,12 @@
   100% { padding-top: 2em; }
 }
 
+.no_user {
+  font-size: 36px;
+  margin-top: 30px;
+  color: white;
+}
+
 .answer-form {
   box-shadow: 0 0 3px #CC0000;
 }
@@ -38,6 +44,7 @@
 .comments {
   margin-top: 200px;
   color: white;
+  margin-bottom: 20px;
 }
 
 .question-show {
