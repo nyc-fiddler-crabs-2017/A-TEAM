@@ -1,19 +1,13 @@
-<h1><%= @question.title %></h1>
+<h2 class="white-text"><%= @question.title %></h2>
 <p><%= @question.text %></p>
 <form action="/comments" method="post">
-  AComment:<br>
+  <label class="white">Comment on Question:</label>
     <input type='hidden' name="comment[user_id]" value="<%= current_user.id %>">
     <input type='hidden' name="comment[commentable_id]" value="<%= @question.id %>">
-    <input type='hidden' name="comment[commentable_type]" value="Question">
+    <input type='hidden' name="vote[commentable_type]" value="Question">
   <input type="comment[body]" name="comment[body]" ><br>
-  <input type="submit" value="Submit Comment">
+  <input type="submit" value="Submit Comment on Question">
 </form>
-
-<% @question.comments.each do |comment| %>
-<div>
-<%= comment.body %>
-<div>
-<% end %>
 
 <% if current_user.id == @question.user_id %>
 <a href="/questions/<%= @question.id %>/edit">Edit question</a>
@@ -24,46 +18,37 @@
 <% end %>
 
 <p><% @question.answers.each do |answer| %>
-  <div class="answer-text">
-    <%= answer.show_score %>
-    <%= answer.text %>
-  </div>
-
-  <div>
-      <div class="answers">
-
-<form action="/users/<%= current_user.id %>/votes" method='post'>
+<div class="votes">
+  <form action="/users/<%= current_user.id %>/votes" method='post'>
     <input type='hidden' name="vote[user_id]" value="<%= current_user.id %>">
     <input type='hidden' name="vote[voteable_id]" value="<%= answer.id %>">
     <input type='hidden' name="vote[voteable_type]" value="Answer">
     <input type='hidden' name="vote[value]" value="1">
     <button type="submit"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-      </form>
-<form action="/users/<%= current_user.id %>/votes" method='post'>
+  </form>
+      <h4 class="white-text"><%= answer.show_score %></h4>
+      <form action="/users/<%= current_user.id %>/votes" method='post'>
         <input type='hidden' name="vote[voteable_id]" value="<%= answer.id %>">
         <input type='hidden' name="vote[user_id]" value="<%= current_user.id %>">
         <input type='hidden' name="vote[value]" value="-1">
         <input type='hidden' name="vote[voteable_type]" value="Answer">
         <button type="submit"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-      </form>
-
-
-<form action="/comments" method="post">
-  AComment:<br>
+    </form>
+  </div>
+    <div class="question-show">
+    <%= answer.text %>
+    </div>
+    <div class="comments">
+  Add a Comment for this Answer:
+  <form action="/comments" method="post">
     <input type='hidden' name="comment[user_id]" value="<%= current_user.id %>">
-    <input type='hidden' name="comment[commentable_id]" value="<%= @question.id %>">
-    <input type='hidden' name="comment[commentable_type]" value="Answer">
-  <input type="comment[body]" name="comment[body]" ><br>
-  <input type="submit" value="Submit Comment">
-</form>
-
-<% @question.comments.each do |comment| %>
-<div>
-<%= comment.body %>
-<div>
-<% end %>
-
-
+    <input type='hidden' name="comment[commentable_id]" value="<%= answer.id %>">
+    <input type='hidden' name="vote[commentable_type]" value="Question">
+    <input type="comment[body]" name="comment[body]" ><br>
+    <input type="submit" value="Submit Comment on Answer">
+    </form>
+  </div>
+  
     <% if current_user.id == answer.user_id %>
       <a class="question_form" href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit Answer</a>
       <form class="question_form" action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">

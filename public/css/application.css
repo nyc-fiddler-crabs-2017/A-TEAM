@@ -1,3 +1,14 @@
+@keyframes up-bump {
+  0% { padding-top: 2em; }
+  50% { padding-top: 1.5em; }
+  100% { padding-top: 2em; }
+}
+@keyframes down-bump {
+  0% { padding-top: 2em; }
+  50% { padding-top: 2.5em; }
+  100% { padding-top: 2em; }
+}
+
 .answer-form {
   box-shadow: 0 0 3px #CC0000;
 }
@@ -6,6 +17,51 @@
   color: white;
   font-family: 'Raleway',sans-serif;
   font-size: 30px; font-weight: 500;
+}
+
+.box {
+  background-color: #5F9EA0;
+  opacity: .75;
+  color: #191970;
+}
+
+.question-list {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.votes {
+  float: left;
+  width: 15%;
+}
+
+.comments {
+  margin-top: 200px;
+  color: white;
+}
+
+.question-show {
+  height: 100px;
+  animation: down-bump 0.4s ease;
+  float: left;
+  width: 75%;
+  background: linear-gradient(
+     #4682B4, #4682B4 50%, #1E90FF 50%, #1E90FF
+  );
+  transition: all 0.2s ease;
+  background-size: 100% 200%;
+}
+
+.question-show:hover {
+  animation: up-bump 0.4s ease;
+  background-position: 100% 100%;
+}
+
+.question-show:hover h6 {
+  color: #48ad26;
+}
+.question-show:hover h6 span {
+  color: white;
 }
 
 #logout {
@@ -18,8 +74,8 @@
   background-image: url("upbutton.jpg");
   opacity: 0.1;
   background-size: contain;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   font-size: 0px;
 }
 
@@ -29,8 +85,8 @@
   background-image: url("downbutton.jpg");
   opacity: 0.1;
   background-size: contain;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 2 0px;
   font-size: 0px;
 }
 
@@ -74,9 +130,14 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 200px;
-  height: 100%;
-  color: white;
+  color: #B0C4DE;
+  font-family: 'Droid serif', serif;
+  font-size: 165px;
+  line-height: 160px;
+  font-weight: normal;
+  margin-bottom: 0px;
+  margin-top: 40px;
+  text-shadow: 0 1px 1px #fff;
 }
 
 h1 {
@@ -98,7 +159,7 @@ p {
 }
 
 body {
-  background-image: url("image2.jpg");
+  background-image: url("backdrop.jpg");
   min-height: 200vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -108,6 +169,11 @@ body {
 a {
   color: #F8F8FF;
   text-align: center;
-  vertical-align: middle;
-  line-height: 90px;
+  line-height: 30px;
+  opacity: .75;
+}
+
+a:hover {
+  color: #00008B;
+  opacity: 1;
 }
