@@ -42,7 +42,7 @@ put '/questions/:id' do
   end
 end
 
-delete '/questions/id' do
+delete '/questions/:id' do
   @question = Question.find(params[:id])
 
   @question.destroy

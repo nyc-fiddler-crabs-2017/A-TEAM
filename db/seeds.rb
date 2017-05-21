@@ -1,26 +1,17 @@
 require 'faker'
 
 User.delete_all
-Channel.delete_all
-Subscription.delete_all
+Question.delete_all
 
-users = 100.times.map do
-  User.create!( :last_name  => Faker::Name.name,
+users = 20.times.map do
+  User.create!( :username  => Faker::Name.name,
                 :email      => Faker::Internet.email,
                 :password   => 'password' )
 end
 
-channels = ["Telemundo", "Unimas ", "Azteca 13", "Mexiquense",
- "ESPN", "Fox Sports", "NBC Sports", "Big Ten Network", "Nickelodeon"].map do |name|
-  Channel.create!(:name            => name,
-                  :callsign        => name[0..2].upcase,
-                  :price_per_month => Faker::Commerce.price)
-end
-
-users.each do |user|
-  user_channels = channels.sample(rand(2..4))
-  user_channels.each do |channel|
-    Subscription.create!(user: user,
-                         channel: channel)
-  end
+user_questions = ["life?", "meaning?", "language?", "real?"].map do |name|
+  Question.create!(:title => name,
+                  :text   => Faker::Food.ingredient,
+                  :user => users[rand(18)]
+                  )
 end
