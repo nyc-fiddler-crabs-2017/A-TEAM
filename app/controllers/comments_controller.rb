@@ -12,10 +12,10 @@ post '/comments' do
   @comment = Comment.new(params[:comment])
 
   if @comment.save
-    redirect '/comments'
+    redirect "/#{@comment.commentable}"
   else
     @errors = @comment.errors.full_messages
-    erb :'comments/new'
+    redirect "/#{@comment.commentable}"
   end
 end
 
